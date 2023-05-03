@@ -1,0 +1,14 @@
+<app-modal
+  [headerText]="data.headerText"
+  [headerWith]="'100%'"
+>
+  <div class="modal-container">
+    <i class="fas fa-exclamation-circle"></i>
+    <div class="modal-message">{{data.message}}</div>
+    <div class="modal-buttons">
+      <button mat-flat-button color="primary" class="modal-confirm" (click)="onConfirm()" style="margin-right: 5px;">Confirm</button>
+      <button mat-flat-button color="warn" class="modal-cancel" (click)="onCancel()">Cancel</button>
+    </div>
+  </div>
+</app-modal>
+

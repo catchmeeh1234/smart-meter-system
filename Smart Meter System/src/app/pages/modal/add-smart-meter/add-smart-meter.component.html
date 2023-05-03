@@ -1,0 +1,32 @@
+<app-modal
+  [headerText]="data.headerText"
+  [headerWith]="'100%'"
+>
+  <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+    <mat-tab label="Account Details">
+      <form [formGroup]="submitForm" (ngSubmit)="onSubmitForm()">
+        <div fxLayout="column">
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div>
+              <label for="">Device Name</label>
+              <input matInput type="text" formControlName="devicename">
+            </div>
+            <div>
+              <label for="">Device DevEUI</label>
+              <input matInput type="text" formControlName="devicedeveui">
+            </div>
+          </div>
+            <label for="">Gateway ID</label>
+            <input matInput type="text" formControlName="gatewayid">
+
+            <label for="">Reading</label>
+            <input matInput type="text" formControlName="reading">
+        </div>
+        <div>
+          <input type="submit" value="Save" id="btnUpdateInformation">
+        </div>
+        <!-- <div [ngClass]="statusColor">{{ statusMessage.status }}</div> -->
+      </form>
+    </mat-tab>
+  </mat-tab-group>
+</app-modal>

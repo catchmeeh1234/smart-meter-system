@@ -1,0 +1,84 @@
+<app-modal
+  [headerText]="data.headerText"
+  [headerWith]="'100%'"
+>
+  <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+    <mat-tab label="Account Details">
+      <form [formGroup]="submitForm" (ngSubmit)="onSubmitForm()">
+        <div fxLayout="column">
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <h1 class="display-4" style="margin: 10px 15px 15px;"></h1>
+            <select formControlName="customerstatus">
+              <option value="Active">Active</option>
+              <option value="Disconnected">Disconnected</option>
+              <option value="Closed">Closed</option>
+            </select>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div>
+              <label for="">Last name</label>
+              <input matInput type="text" formControlName="lastname">
+            </div>
+            <div>
+              <label for="">First name</label>
+              <input matInput type="text" formControlName="firstname">
+            </div>
+          </div>
+            <label for="">Company name</label>
+            <input matInput type="text" formControlName="companyname">
+
+            <label for="">Service Address</label>
+            <input matInput type="text" formControlName="serviceaddress">
+
+            <label for="">Land Mark</label>
+            <input matInput type="text" formControlName="landmark">
+
+            <label for="">Contact No</label>
+            <input matInput type="text" formControlName="contactno">
+        </div>
+        <!-- <div [ngClass]="statusColor">{{ statusMessage.status }}</div> -->
+      </form>
+    </mat-tab>
+    <mat-tab label="Installation Details">
+      <form [formGroup]="submitForm" (ngSubmit)="onSubmitForm()">
+      <div fxLayout="column">
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <h4 for="">Account No <span>{{ accno }}</span></h4>
+        </div>
+        <label for="">Meter Number</label>
+        <input matInput type="text" formControlName="meterno">
+
+        <label for="">Zone</label>
+        <select formControlName="zone">
+          <option *ngFor="let zone of zones" [value]="zone.ZoneName"> {{zone.ZoneName}} </option>
+        </select>
+        <label for="">Sequence Number</label>
+        <input matInput type="text" formControlName="readingseqno">
+        <label for="">Classification</label>
+        <select formControlName="rates">
+          <option *ngFor="let rate of rates" [value]="rate.CustomerType"> {{rate.CustomerType}} </option>
+        </select>
+        <label for="">Meter size</label>
+        <select formControlName="metersize">
+          <option *ngFor="let metersize of metersizes" [value]="metersize.MeterSize"> {{metersize.MeterSize}} </option>
+        </select>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-evenly center">
+        <div>
+          <label for="">Date Created</label>
+          <input matInput type="date" formControlName="datecreated">
+        </div>
+        <div>
+          <label for="">Date Installed</label>
+          <input matInput type="date" formControlName="dateinstalled">
+        </div>
+      </div>
+
+      <!-- <div [ngClass]="statusColor">{{ statusMessage.status }}</div> -->
+      <div>
+        <input type="submit" [disabled]="isButtonDisabled" value="Save" id="btnUpdateInformation">
+      </div>
+    </form>
+    </mat-tab>
+  </mat-tab-group>
+</app-modal>

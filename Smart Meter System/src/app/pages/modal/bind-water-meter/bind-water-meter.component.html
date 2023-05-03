@@ -1,0 +1,44 @@
+<app-modal
+  [headerText]="data.headerText"
+  [headerWith]="'100%'"
+>
+  <div fxLayout="row" fxLayoutAlign="space-between center" style="padding: 20px;padding-bottom: 10px;">
+    <mat-form-field>
+      <mat-label>Search</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Customer Name" #input>
+    </mat-form-field>
+  </div>
+  <mat-table #table *ngIf="concessionaire.dataSource" [dataSource]="concessionaire.dataSource">
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <!--- Note that these columns can be defined in any order.
+    The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Progress Column -->
+    <ng-container matColumnDef="CustomerName">
+      <mat-header-cell *matHeaderCellDef> Customer Name </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+       {{row.CustomerName}}
+      </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="Zone">
+      <mat-header-cell *matHeaderCellDef>Zone</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.Zone}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Action">
+      <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-flat-button color="primary" (click)="onConfirmSmartMeterBind(row.AccountNo)">Bind</button>
+      </mat-cell>
+    </ng-container>
+
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+      aria-label=""
+    >
+    </mat-paginator>
+</app-modal>

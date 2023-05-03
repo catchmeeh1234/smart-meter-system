@@ -1,0 +1,23 @@
+<app-modal [headerText]="data.headerText">
+  <div class="form">
+    <form [formGroup]="signUpForm" (ngSubmit)="onSignUp()" style="font-size: 18px;">
+      <label for="">First name</label>
+      <input type="text" placeholder="Enter First name" formControlName="firstname">
+      <label for="">Last name</label>
+      <input type="text" placeholder="Enter Last name" formControlName="lastname">
+
+      <label for="">Username</label>
+      <input type="text" placeholder="Enter User name" formControlName="username">
+      <label for="">Password</label>
+      <input type="password" placeholder="Enter Password" formControlName="password">
+
+      <label for="">Role</label>
+      <select id="role" formControlName="role">
+        <option value="admin">admin</option>
+        <option value="viewer">viewer</option>
+      </select>
+      <div [ngClass]="statusColor">{{ statusMessage.status }}</div>
+      <input type="submit" value="Create">
+    </form>
+  </div>
+</app-modal>

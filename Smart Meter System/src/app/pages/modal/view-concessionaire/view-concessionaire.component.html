@@ -1,0 +1,157 @@
+<app-modal
+  [headerText]="data.headerText"
+  [headerWith]="'100%'"
+>
+  <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+    <mat-tab label="Account Details">
+      <form [formGroup]="editForm" (ngSubmit)="onEditForm()">
+        <div fxLayout="column">
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <h1 class="display-4" style="margin: 10px 15px 15px;">{{data.details[0].AccountNo}}</h1>
+            <select formControlName="customerstatus">
+              <option value="Active">Active</option>
+              <option value="Disconnected">Disconnected</option>
+              <option value="Closed">Closed</option>
+            </select>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div>
+              <label for="">Last name</label>
+              <input matInput type="text" formControlName="lastname">
+            </div>
+            <div>
+              <label for="">First name</label>
+              <input matInput type="text" formControlName="firstname">
+            </div>
+          </div>
+            <label for="">Company name</label>
+            <input matInput type="text" formControlName="companyname">
+
+            <label for="">Service Address</label>
+            <input matInput type="text" formControlName="serviceaddress">
+
+            <label for="">Land Mark</label>
+            <input matInput type="text" formControlName="landmark">
+
+            <label for="">Contact No</label>
+            <input matInput type="text" formControlName="contactno">
+            <button mat-flat-button color="primary" type="button" (click)="onToggleUpdateBtn()" class="btnupdate">{{toggleUpdateButton}}</button>
+        </div>
+        <!-- <div [ngClass]="statusColor">{{ statusMessage.status }}</div> -->
+        <div style="width:100%;">
+          <input type="submit" [disabled]="isButtonDisabled" value="Save" id="btnUpdateInformation">
+        </div>
+      </form>
+    </mat-tab>
+    <mat-tab label="Installation Details">
+      <form [formGroup]="editForm" (ngSubmit)="onEditForm()">
+      <div fxLayout="column">
+        <label for="">Zone</label>
+        <select formControlName="zone">
+          <option *ngFor="let zone of zones" [value]="zone.ZoneName"> {{zone.ZoneName}} </option>
+        </select>
+        <label for="">Sequence Number</label>
+        <input matInput type="text" formControlName="readingseqno">
+        <label for="">Classification</label>
+        <select formControlName="rates">
+          <option *ngFor="let rate of rates" [value]="rate.CustomerType"> {{rate.CustomerType}} </option>
+        </select>
+        <label for="">Meter size</label>
+        <select formControlName="metersize">
+          <option *ngFor="let metersize of metersizes" [value]="metersize.MeterSize"> {{metersize.MeterSize}} </option>
+        </select>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-evenly center">
+        <div>
+          <label for="">Date Created</label>
+          <input matInput type="date" formControlName="datecreated">
+        </div>
+        <div>
+          <label for="">Date Installed</label>
+          <input matInput type="date" formControlName="dateinstalled">
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-evenly center">
+        <button mat-flat-button color="primary" type="button" (click)="openWaterMeterDetails(data.details[0].MeterNo)" [disabled]="!isButtonDisabled" class="btnMeterNo">Meter Number(
+          {{data.details[0].MeterNo}})
+        </button>
+        <button mat-flat-button color="primary" type="button" (click)="onToggleUpdateBtn()" class="btnupdate">
+          {{toggleUpdateButton}}
+        </button>
+      </div>
+      <!-- <div [ngClass]="statusColor">{{ statusMessage.status }}</div> -->
+      <div>
+        <input type="submit" [disabled]="isButtonDisabled"  value="Save" id="btnUpdateInformation">
+      </div>
+    </form>
+    </mat-tab>
+    <mat-tab label="Consumption Graph">
+
+      <div style="margin-top:35px;">
+        <div fxLayout="row" fxLayoutAlign="end start">
+          <button mat-icon-button [matMenuTriggerFor]="menuTimeline" aria-label="Select timeline">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menuTimeline="matMenu">
+            <button mat-menu-item (click)="onTimelineSelected('Daily')">
+              <mat-icon>trending_up</mat-icon>
+              <span>Daily</span>
+            </button>
+            <button mat-menu-item (click)="onTimelineSelected('Hourly')">
+              <mat-icon>trending_up</mat-icon>
+              <span>Hourly</span>
+            </button>
+            <button mat-menu-item (click)="onTimelineSelected('Monthly')">
+              <mat-icon>trending_up</mat-icon>
+              <span>Monthly</span>
+            </button>
+          </mat-menu>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center" *ngIf="!graphDataChart || graphDataChart.length === 0; else displayConsPattern">
+          <p>No data available to display.</p>
+        </div>
+        <ng-template #displayConsPattern>
+          <div fxLayout="row" fxLayoutAlign="center center">
+            <ngx-charts-line-chart
+            [view]="view"
+            [scheme]="colorScheme"
+            [results]="graphDataChart"
+            [gradient]="gradient"
+            [xAxis]="showXAxis"
+            [yAxis]="showYAxis"
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel"
+            [xAxisLabel]="xAxisLabel"
+            [yAxisLabel]="yAxisLabel">
+            </ngx-charts-line-chart>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="center center">
+            <h5 style="text-align: center;">{{ selectedTimeline }} Consumption</h5>
+          </div>
+        </ng-template>
+      </div>
+    </mat-tab>
+    <mat-tab label="Current Reading">
+      <div style="text-align: center;" fxLayout="column" fxLayoutAlign="center stretch">
+          <h2>Current Reading as of <span>{{currentDate}}</span></h2>
+          <div fxLayout="row" fxFlex >
+            <!-- <cdk-round-progressbar [title]="" [current]="lastMeterReadingInM3" [background]="'#FFCF68'" [color]="'#A7DEFF'" [boxcolor]="'#26C6DA'" style="width:100%;"></cdk-round-progressbar> -->
+            <ngx-charts-gauge
+              class="custom-last-meter-reading"
+              [results]="lastMeterReadingInM3"
+              [min]="0"
+              [max]="100"
+              [angleSpan]="240"
+              [startAngle]="-120"
+              [units]="'m³'"
+              [showAxis]="true"
+              [bigSegments]="10"
+              [smallSegments]="5"
+              [animations]="false"
+            >
+            </ngx-charts-gauge>
+          </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</app-modal>

@@ -1,0 +1,38 @@
+<app-modal
+  [headerText]="data.headerText"
+  [headerWith]="'500px'"
+>
+  <div fxLayout="row" fxLayoutGap="16px">
+    <h1>Meter Number: {{data.details[0].MeterNo}}</h1>
+  </div>
+  <div fxLayout="row" fxLayoutGap="16px">
+    <mat-form-field fxFlex appearance="fill" floatLabel="always">
+      <mat-label>Device name</mat-label>
+      <input matInput type="text" disabled value="NAS-Wehrie-SmartMeter">
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutGap="16px">
+    <mat-form-field fxFlex appearance="fill" floatLabel="always">
+      <mat-label>devEUI</mat-label>
+      <input matInput type="text" disabled value="70b3d5b020045201">
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutGap="16px">
+    <mat-form-field fxFlex appearance="fill" floatLabel="always">
+      <mat-label>Gateway id</mat-label>
+      <input matInput type="text" disabled value="24e124fffef05e00">
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutGap="16px">
+    <mat-form-field fxFlex appearance="fill" floatLabel="always">
+      <mat-label>Frequency</mat-label>
+      <input matInput type="text" disabled value="867700000">
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutGap="16px">
+    <mat-form-field fxFlex appearance="fill" floatLabel="always">
+      <mat-label>Data</mat-label>
+      <input matInput type="text" disabled value="ABAEE08BAgYAAAAAEAAAAAA==">
+    </mat-form-field>
+  </div>
+</app-modal>
