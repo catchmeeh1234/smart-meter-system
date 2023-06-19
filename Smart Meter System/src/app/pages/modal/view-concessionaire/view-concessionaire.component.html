@@ -35,11 +35,11 @@
 
             <label for="">Contact No</label>
             <input matInput type="text" formControlName="contactno">
-            <button mat-flat-button color="primary" type="button" (click)="onToggleUpdateBtn()" class="btnupdate">{{toggleUpdateButton}}</button>
+            <button *ngIf="role === 'admin'" mat-flat-button color="primary" type="button" (click)="onToggleUpdateBtn()" class="btnupdate">{{toggleUpdateButton}}</button>
         </div>
         <!-- <div [ngClass]="statusColor">{{ statusMessage.status }}</div> -->
         <div style="width:100%;">
-          <input type="submit" [disabled]="isButtonDisabled" value="Save" id="btnUpdateInformation">
+          <input *ngIf="role === 'admin'" type="submit" [disabled]="isButtonDisabled" value="Save" id="btnUpdateInformation">
         </div>
       </form>
     </mat-tab>
@@ -75,13 +75,13 @@
         <button mat-flat-button color="primary" type="button" (click)="openWaterMeterDetails(data.details[0].MeterNo)" [disabled]="!isButtonDisabled" class="btnMeterNo">Meter Number(
           {{data.details[0].MeterNo}})
         </button>
-        <button mat-flat-button color="primary" type="button" (click)="onToggleUpdateBtn()" class="btnupdate">
+        <button *ngIf="role === 'admin'" mat-flat-button color="primary" type="button" (click)="onToggleUpdateBtn()" class="btnupdate">
           {{toggleUpdateButton}}
         </button>
       </div>
       <!-- <div [ngClass]="statusColor">{{ statusMessage.status }}</div> -->
       <div>
-        <input type="submit" [disabled]="isButtonDisabled"  value="Save" id="btnUpdateInformation">
+        <input *ngIf="role === 'admin'" type="submit" [disabled]="isButtonDisabled"  value="Save" id="btnUpdateInformation">
       </div>
     </form>
     </mat-tab>

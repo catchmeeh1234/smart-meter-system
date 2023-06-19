@@ -53,6 +53,8 @@ export class ViewConcessionaireComponent implements OnInit {
     }
   ];
 
+  public role:string = this.sessionStorageService.getSession("role");
+  
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
               private concessionaire:ConcessionairesService,
               public dialog: MatDialog,

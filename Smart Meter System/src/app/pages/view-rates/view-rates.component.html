@@ -91,7 +91,7 @@
         <ng-container matColumnDef="action">
 					<mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
 					<mat-cell *matCellDef="let row">
-            <button mat-flat-button color="primary" (click)="editWaterRates(row.RateSchedulesID)" [id]="'btn' + row.RateSchedulesID" value="Edit">Edit</button>
+            <button *ngIf="role === 'admin'" mat-flat-button color="primary" (click)="editWaterRates(row.RateSchedulesID)" [id]="'btn' + row.RateSchedulesID" value="Edit">Edit</button>
           </mat-cell>
 				</ng-container>
 
@@ -121,7 +121,7 @@
           </mat-cell>
 				</ng-container> -->
 			</mat-table>
-      <button type="button" class="btnSave" disabled="true" (click)="onSaveWaterRates()">Save</button>
+      <button *ngIf="role === 'admin'" type="button" class="btnSave" disabled="true" (click)="onSaveWaterRates()">Save</button>
 
       <mat-paginator [pageSizeOptions]="[5, 10, 20]"
         showFirstLastButtons

@@ -23,10 +23,10 @@
             <input matInput type="text" formControlName="reading">
         </div>
         <div>
-          <button mat-flat-button color="primary" type="button" (click)="onToggleUpdateBtn()" class="btnupdate" id="btnToggleUpdateBtn">
+          <button *ngIf="role === 'admin'" mat-flat-button color="primary" type="button" (click)="onToggleUpdateBtn()" class="btnupdate" id="btnToggleUpdateBtn">
             {{toggleUpdateButton}}
           </button>
-          <input type="submit" value="Save" id="btnUpdateInformation">
+          <input *ngIf="role === 'admin'" type="submit" value="Save" id="btnUpdateInformation">
         </div>
         <!-- <div [ngClass]="statusColor">{{ statusMessage.status }}</div> -->
       </form>

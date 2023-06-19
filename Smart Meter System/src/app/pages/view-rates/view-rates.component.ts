@@ -20,6 +20,7 @@ export class ViewRatesComponent implements OnInit {
   public isInputDisabled:boolean = true;
   public editAction = "Edit";
 
+  public role:string = this.sessionStorageService.getSession("role");
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 

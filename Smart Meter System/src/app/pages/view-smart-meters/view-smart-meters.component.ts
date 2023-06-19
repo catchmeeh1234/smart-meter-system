@@ -8,6 +8,7 @@ import { ViewSelectedSmartMeterComponent } from '../modal/view-selected-smart-me
 import { BindWaterMeterComponent } from '../modal/bind-water-meter/bind-water-meter.component';
 import { ConcessionairesService } from '../../services/concessionaires.service';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { SessionStorageService } from '../../services/session-storage.service';
 
 @Component({
   selector: 'app-view-smart-meters',
@@ -20,11 +21,14 @@ export class ViewSmartMetersComponent implements OnInit {
   public result:any;
   private statusColor:string;
 
+  public role:string = this.sessionStorageService.getSession("role");
+
   constructor(
     public smartmeter:SmartmeterService,
     private dialog: MatDialog,
     private concessionaire: ConcessionairesService,
     private snackBar: MatSnackBar,
+    private sessionStorageService:SessionStorageService
   ) { }
 
   ngOnInit(): void {

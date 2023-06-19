@@ -19,6 +19,8 @@ export class ViewSelectedSmartMeterComponent implements OnInit {
   public statusColor:string = 'statusSuccess';
   public statusMessage:any;
 
+  public role:string = this.sessionStorageService.getSession("role");
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public snackBar: MatSnackBar,

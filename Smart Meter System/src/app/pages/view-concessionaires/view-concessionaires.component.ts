@@ -8,6 +8,7 @@ import { NgSelectModule, NgOption } from '@ng-select/ng-select/public-api';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ViewConcessionaireComponent } from '../modal/view-concessionaire/view-concessionaire.component';
 import { AddConcessionaireComponent } from '../add-concessionaire/add-concessionaire.component';
+import { SessionStorageService } from '../../services/session-storage.service';
 
 @Component({
   selector: 'app-view-concessionaires',
@@ -24,13 +25,14 @@ export class ViewConcessionairesComponent implements OnInit {
   public zones:any;
 
   public btnStatus:string;
+  public user_role:string;
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
   public _details:any;
 
-  constructor(private zone:ZoneService, public concessionaire:ConcessionairesService, public dialog: MatDialog) {
-
+  constructor(private zone:ZoneService, public concessionaire:ConcessionairesService, public dialog: MatDialog, private sessionStorageService:SessionStorageService) {
+    this.user_role = this.sessionStorageService.getSession("role");
   }
 
   ngOnInit(): void {

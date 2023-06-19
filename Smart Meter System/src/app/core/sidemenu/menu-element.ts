@@ -184,12 +184,12 @@ export const menus = [
             'link': 'pages/viewSmartMeters',
             'open': false,
           },
-          {
-              'name': 'Read Smart Meters',
-              'icon': 'filter_list',
-              'link': 'pages/readSmartMeters',
-              'open': false,
-          },
+          // {
+          //     'name': 'Read Smart Meters',
+          //     'icon': 'filter_list',
+          //     'link': 'pages/readSmartMeters',
+          //     'open': false,
+          // },
 
           // {
           //     'name': 'Sub Module 3',
